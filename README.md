@@ -44,7 +44,7 @@ rcheat/
 ├── src/                      # Source files (fonts, etc.)
 │   └── font.ttf              # Custom font
 │
-├── app.py                    # Main application script
-└── requirements.txt          # Python dependencies
+├── rcheat.py                 # Main application script
+└── requirements.txt          # Python dependencies (soon)
 
 
