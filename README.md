@@ -30,8 +30,10 @@
 
 
 
+
 ## Directory Structure
 
+```bash
 rcheat/
 │
 ├── img/                      # Image assets like icons and logos
@@ -44,4 +46,5 @@ rcheat/
 │
 ├── app.py                    # Main application script
 └── requirements.txt          # Python dependencies
+
 
