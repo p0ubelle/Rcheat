@@ -27,3 +27,21 @@
    ```bash
    git clone https://github.com/your-username/rcheat.git
    cd rcheat
+
+
+
+## Directory Structure
+
+rcheat/
+│
+├── img/                      # Image assets like icons and logos
+│   ├── logo-transparent_Rcheat.png
+│   ├── icon_Rcheat.ico
+│   └── ...                   # Additional image files
+│
+├── src/                      # Source files (fonts, etc.)
+│   └── font.ttf              # Custom font
+│
+├── app.py                    # Main application script
+└── requirements.txt          # Python dependencies
+
