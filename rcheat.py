@@ -40,5 +40,5 @@ id': '403244404350910465', 'username': 'p0ubelle',
 'public_flags': 256, 'flags': 256, 'banner': 'a_506617764414be61c00a3685e5f16fa5', 
 'accent_color': 16777215, 'global_name': 'p0ubelle', 'avatar_decoration_data': None, 
 'banner_color': '#ffffff', 'clan': None, 'mfa_enabled': True, 'locale': 'fr', 'premium_type': 2, 
-'email': 'raphael.vasseur26@gmail.com', 'verified': True
+'email': 'user@gmai.com', 'verified': True
 """
