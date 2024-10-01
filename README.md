@@ -7,7 +7,7 @@
 
 ## Features
 
-- **Custom Font Installation**: The app checks for and installs custom fonts dynamically.
+- **Custom Font Installation**: The app checks for and installs custom fonts dynamically --> [About](https://learn.microsoft.com/fr-fr/windows/win32/gdi/windows-gdi)
 - **Discord Integration**: Includes a button directly to connected to a discord bot thanks to OAuth 2.0 --> [About](https://discord.com/developers/docs/topics/oauth2)
 
 ## Requirements
