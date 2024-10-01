@@ -2,6 +2,9 @@
 
 **Rcheat** is a customizable desktop application built with Python, using the `customtkinter` library for the GUI. The app allows for a dynamic interface with various game-related tabs like MW3, CS:GO, Rocket League, and Valorant. 
 
+![Preview](img/preview/Preview1.png)
+
+
 ## Features
 
 - **Custom Window Dragging**: Move the window by clicking and dragging anywhere within the application.
@@ -27,7 +30,6 @@
    ```bash
    git clone https://github.com/your-username/rcheat.git
    cd rcheat
-
 
 
 
