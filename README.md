@@ -8,7 +8,7 @@
 ## Features
 
 - **Custom Font Installation**: The app checks for and installs custom fonts dynamically.
-- **Discord Integration**: Includes a button directly to connected to a discord bot thanks to OAuth 2.0.
+- **Discord Integration**: Includes a button directly to connected to a discord bot thanks to OAuth 2.0 --> [About](https://discord.com/developers/docs/topics/oauth2)
 
 ## Requirements
 
