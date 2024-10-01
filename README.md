@@ -27,6 +27,7 @@
    ```bash
    git clone https://github.com/your-username/rcheat.git
    cd rcheat
+   py3 
 
 
 
