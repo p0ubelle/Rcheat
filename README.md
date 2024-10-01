@@ -7,11 +7,8 @@
 
 ## Features
 
-- **Custom Window Dragging**: Move the window by clicking and dragging anywhere within the application.
-- **Dynamic Navigation**: Switch between different game-specific frames such as MW3, CS:GO, Rocket League, and Valorant.
 - **Custom Font Installation**: The app checks for and installs custom fonts dynamically.
 - **Discord Integration**: Includes a button directly to connected to a discord bot thanks to OAuth 2.0.
-- **Image Embedding**: Supports custom images and logos for different sections.
 
 ## Requirements
 
