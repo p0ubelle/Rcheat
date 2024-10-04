@@ -17,7 +17,7 @@ def fetch_discord_user_info():
             print("Failed to get user info:", response.status_code)
     except Exception as e:
         print("Error fetching user info:", e)
-
+    
 
 user_info = fetch_discord_user_info()
 if user_info:
