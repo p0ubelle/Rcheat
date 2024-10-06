@@ -118,7 +118,7 @@ class App(customtkinter.CTk):
         # ____ GAME IMAGES ____
 
         self.mw3_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "mw3.png")), size=(20, 20))
-        self.mw3_image_big = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "mw3.png")), size=(35, 35))
+        self.mw3_image_banner = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "mw3_banner.png")), size=(160, 75))
 
         self.csgo_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "csgo.png")), size=(20, 20))
         self.rocketleague_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "rocketleague.png")), size=(20, 20))
@@ -140,6 +140,7 @@ class App(customtkinter.CTk):
         my_font_h3 = customtkinter.CTkFont(family=desired_font, size=font_size_h3)
         my_font_h2 = customtkinter.CTkFont(family=desired_font, size=font_size_h2)
         my_font_h1 = customtkinter.CTkFont(family=desired_font, size=font_size_h1)
+
 
 
         # ________ COLORS ________
@@ -167,10 +168,38 @@ class App(customtkinter.CTk):
         # self.color_contour = "#141414"
 
 
+        # ____ COLORS 4 (Vibrant Midnight) ____
+        # self.color_bg = "#0C1E3D"        # Deep Blue Background
+        # self.color_side = "#09223C"      # Slightly Lighter Side Panel
+        # self.color_hover = "#1F5C91"     # Vibrant Hover Effect
+        # self.color_button = "#237AB5"    # Bright Blue for Buttons
+        # self.color_contour = "#0A3A60"   # Contour/Border color
+
+        # ____ COLORS 5 (Sunset Glow) ____
+        # self.color_bg = "#202020"        # Dark Gray Background
+        # self.color_side = "#2E2E2E"      # Darker Side Panel
+        # self.color_hover = "#FF5722"     # Bright Orange for Hover
+        # self.color_button = "#FF8A50"    # Sunset Orange for Buttons
+        # self.color_contour = "#F4511E"   # Reddish Border Color
+
+        # # ____ COLORS 6 (Dark Forest) ____
+        # self.color_bg = "#162B1F"        # Forest Green Background
+        # self.color_side = "#0F2216"      # Darker Green for Side Panel
+        # self.color_hover = "#2E7D32"     # Bright Green Hover Effect
+        # self.color_button = "#388E3C"    # Light Green for Buttons
+        # self.color_contour = "#1B5E20"   # Deep Green for Contour
+
+        # self.color_bg = "#121212"        # Very Dark Grey/Black Background
+        # self.color_side = "#1C1F26"      # Dark Navy Blue for Side Panel
+        # self.color_hover = "#007ACC"     # Deeper Blue Hover Effect
+        # self.color_button = "#00CFFF"    # Light Cyan/Blue for Buttons
+        # self.color_contour = "#003E66"   # Deep Blue for Contour (matching dark blue in logo)
+
+
 
 
         self.config(background=self.color_bg)
-
+    
 
 
         # ________ NAV ________
@@ -181,7 +210,7 @@ class App(customtkinter.CTk):
 
 
 
-        self.navigation_frame_label = customtkinter.CTkLabel(self.navigation_frame, text="™Rcheat", image=self.logo_image,
+        self.navigation_frame_label = customtkinter.CTkLabel(self.navigation_frame, text="", image=self.logo_image,
                                                              compound="left", font=customtkinter.CTkFont(size=15, weight="bold"))
         self.navigation_frame_label.grid(row=0, column=0, padx=20, pady=15)
 
@@ -236,69 +265,63 @@ class App(customtkinter.CTk):
 
         self.mw3_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color=self.color_bg)
         self.mw3_frame.grid_columnconfigure(0, weight=0)
-
+        self.mw3_frame.grid(pady=7)
 
 
         # ____ mw3 top frame ____
-        self.mw3_frame_top_frame = customtkinter.CTkFrame(self.mw3_frame, corner_radius=0, fg_color=self.color_bg, border_color=self.color_contour, border_width=.7, width=300)
+        
+        self.mw3_frame_top_frame = customtkinter.CTkFrame(self.mw3_frame, corner_radius=0, fg_color=self.color_bg, border_color=self.color_contour, border_width=.7)
         self.mw3_frame_top_frame.grid_columnconfigure(0, weight=1)
-        self.mw3_frame_top_frame.grid(row=0, column=0, sticky="nwe", pady=7)
+        self.mw3_frame_top_frame.grid(row=0, column=0, sticky="nwe")
 
-        self.mw3_frame_top_label = customtkinter.CTkLabel(self.mw3_frame_top_frame, text="MW3 ♛", font=my_font_h3, compound="left")
-        self.mw3_frame_top_label.grid(row=0, column=0, padx=20, pady=20, sticky="w")
+        self.mw3_frame_top_banner = customtkinter.CTkButton(self.mw3_frame_top_frame, image=self.mw3_image_banner, text="", fg_color="transparent", hover='false', width=370)
+        self.mw3_frame_top_banner.grid(row=0, column=0, padx=20, pady=20, sticky="w")
         
         
         # ____ mw3 mid frame ____
-        self.mw3_frame_mid_frame = customtkinter.CTkFrame(self.mw3_frame, corner_radius=0, fg_color=self.color_bg, border_color=self.color_contour)
+
+        self.mw3_frame_mid_frame = customtkinter.CTkFrame(self.mw3_frame, corner_radius=0, fg_color=self.color_bg, border_color=self.color_contour, border_width=.7)
         self.mw3_frame_mid_frame.grid_columnconfigure(2, weight=1)
-        self.mw3_frame_mid_frame.grid(row=1, column=0, sticky="new")
+        self.mw3_frame_mid_frame.grid(row=1, column=0, sticky="new", pady=5)
 
 
-        # ____ mw3 mid left ____
+        self.mw3_frame_mid_unlockall_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame, text="Unlock All", font=my_font_h4)
+        self.mw3_frame_mid_unlockall_label.grid(row=1, column=0, pady=10, padx=30, sticky="w")
 
-        self.mw3_frame_mid_frame_left = customtkinter.CTkFrame(self.mw3_frame_mid_frame, corner_radius=0, fg_color=self.color_bg, border_color=self.color_contour, border_width=.7)
-        self.mw3_frame_mid_frame_left.grid_columnconfigure(2, weight=1)
-        self.mw3_frame_mid_frame_left.grid(row=0, column=0, sticky="new")
-
-
-        self.mw3_frame_mid_unlockall_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame_left, text="Unlock All", font=my_font_h4)
-        self.mw3_frame_mid_unlockall_label.grid(row=0, column=0, padx=20, pady=10, sticky="ws")
-
-        self.mw3_frame_mid_unlockall_button = customtkinter.CTkButton(self.mw3_frame_mid_frame_left, fg_color=self.color_button, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=20)
-        self.mw3_frame_mid_unlockall_button.grid(row=0, column=1, padx=20, pady=10, sticky="ws")
-
-        self.mw3_frame_mid_ddos_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame_left, text="DDos Tool", font=my_font_h4)
-        self.mw3_frame_mid_ddos_label.grid(row=1, column=0, padx=20, pady=10, sticky="ws")
-
-        self.mw3_frame_mid_ddos_button = customtkinter.CTkButton(self.mw3_frame_mid_frame_left, fg_color=self.color_button, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=20)
-        self.mw3_frame_mid_ddos_button.grid(row=1, column=1, padx=20, pady=10, sticky="ws")
+        self.mw3_frame_mid_unlockall_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
+        self.mw3_frame_mid_unlockall_button.grid(row=1, column=2, pady=10, sticky="w")
 
 
-        # ____ mw3 mid right ____
+        self.mw3_frame_mid_legitcheat_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame, text="Legit Cheat", font=my_font_h4)
+        self.mw3_frame_mid_legitcheat_label.grid(row=2, column=0, padx=30, pady=10, sticky="w")
 
-        self.mw3_frame_mid_frame_right = customtkinter.CTkFrame(self.mw3_frame_mid_frame, corner_radius=0, fg_color=self.color_bg, border_color=self.color_contour, border_width=.7)
-        self.mw3_frame_mid_frame_right.grid_columnconfigure(2, weight=1)
-        self.mw3_frame_mid_frame_right.grid(row=0, column=1, sticky="new", padx=5)
-
-
-        self.mw3_frame_mid_legitcheat_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame_right, text="Legit Cheat", font=my_font_h4)
-        self.mw3_frame_mid_legitcheat_label.grid(row=1, column=0, padx=20, pady=10, sticky="ws")
-
-        self.mw3_frame_mid_legitcheat_button = customtkinter.CTkButton(self.mw3_frame_mid_frame_right, fg_color=self.color_button, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=20)
-        self.mw3_frame_mid_legitcheat_button.grid(row=1, column=1, padx=20, pady=10, sticky="ws")
+        self.mw3_frame_mid_legitcheat_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
+        self.mw3_frame_mid_legitcheat_button.grid(row=2, column=2, pady=10, sticky="w")
 
 
-        self.mw3_frame_mid_ragecheat_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame_right, text="Rage Cheat", font=my_font_h4)
-        self.mw3_frame_mid_ragecheat_label.grid(row=2, column=0, padx=20, pady=10, sticky="ws")
+        self.mw3_frame_mid_ragecheat_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame, text="Rage Cheat", font=my_font_h4)
+        self.mw3_frame_mid_ragecheat_label.grid(row=3, column=0, padx=30, pady=10, sticky="w")
 
-        self.mw3_frame_mid_ragecheat_button = customtkinter.CTkButton(self.mw3_frame_mid_frame_right, fg_color=self.color_button, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=20)
-        self.mw3_frame_mid_ragecheat_button.grid(row=2, column=1, padx=20, pady=10, sticky="ws")
+        self.mw3_frame_mid_ragecheat_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
+        self.mw3_frame_mid_ragecheat_button.grid(row=3, column=2, pady=10, sticky="w")
 
-        self.mw3_frame_mid_othertool_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame_right, text="Other Tools", font=my_font_h4)
-        self.mw3_frame_mid_othertool_label.grid(row=3, column=0, padx=20, pady=10, sticky="ws")
 
-        self.mw3_frame_mid_othertool_button = customtkinter.CTkButton(self.mw3_frame_mid_frame_right, fg_color=self.color_button, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=20)
-        self.mw3_frame_mid_othertool_button.grid(row=3, column=1, padx=20, pady=10, sticky="ws")
+        self.mw3_frame_mid_ddos_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame, text="DDos Tool", font=my_font_h4)
+        self.mw3_frame_mid_ddos_label.grid(row=4, column=0, padx=30, pady=10, sticky="w")
+
+        self.mw3_frame_mid_ddos_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
+        self.mw3_frame_mid_ddos_button.grid(row=4, column=2, pady=10, sticky="w")
+
+
+        self.mw3_frame_mid_othertool_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame, text="Other Tools", font=my_font_h4)
+        self.mw3_frame_mid_othertool_label.grid(row=5, column=0, padx=30, pady=10, sticky="w")
+
+        self.mw3_frame_mid_othertool_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
+        self.mw3_frame_mid_othertool_button.grid(row=5, column=2, pady=10, sticky="w")
+
+
+        self.mw3_frame_mid_invisible2 = customtkinter.CTkLabel(self.mw3_frame_mid_frame, fg_color='transparent', text="", font=my_font_h4, width=60)
+        self.mw3_frame_mid_invisible2.grid(row=6, column=1, padx=60, pady=1, sticky="w")
 
 
 
@@ -415,7 +438,6 @@ class App(customtkinter.CTk):
     def open_link(self, url):
         webbrowser.open(url)
 
-    
 
 if __name__ == "__main__":
     app = App()
