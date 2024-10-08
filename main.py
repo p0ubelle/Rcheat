@@ -16,6 +16,14 @@ from io import BytesIO
 import webbrowser
 
 
+#src import
+from src.get_user_info import get_info
+from src.get_user_version import get_version
+
+
+
+
+
 
 # ________ GET FONT ________
 
@@ -111,7 +119,7 @@ class App(customtkinter.CTk):
         self.changelog_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "changelog.png")), size=(20, 20))
         self.chat_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "chat_light.png")), size=(20, 20))
         self.play_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "play.png")), size=(20, 20))
-        self.add_user_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "add_user_light.png")), size=(20, 20))
+        self.profil_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "profil.png")), size=(20, 20))
         self.transparent_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "transp.png")), size=(180, 1))
         self.discord_image = customtkinter.CTkImage(dark_image=Image.open(os.path.join(image_path, "discord.png")), size=(20, 20))
 
@@ -205,7 +213,7 @@ class App(customtkinter.CTk):
         # ________ NAV ________
 
         self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color=self.color_side, bg_color=self.color_bg, border_width=.7, border_color=self.color_contour)
-        self.navigation_frame.grid(row=0, column=0, sticky="nsew", pady=7, padx=5)
+        self.navigation_frame.grid(row=0, column=0, sticky="nsew", pady=5, padx=5)
         self.navigation_frame.grid_rowconfigure(5, weight=1)
 
 
@@ -248,10 +256,19 @@ class App(customtkinter.CTk):
 
 
 
-        self.discord_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=5, height=40, border_spacing=10, text="", font=my_font_h4,
-                                                      fg_color="transparent", text_color=("gray10", "gray90"), 
+
+        self.navigation_bot_frame = customtkinter.CTkFrame(self.navigation_frame, corner_radius=0, fg_color=self.color_side)
+        self.navigation_bot_frame.columnconfigure(2, weight=0)
+        self.navigation_bot_frame.grid(row=6, column=0)
+
+        self.profil_button = customtkinter.CTkButton(self.navigation_bot_frame, corner_radius=5, height=40, border_spacing=10, text="", fg_color="transparent", 
+                                                      image=self.profil_image, width=20, command=self.profil_button_event)
+        self.profil_button.grid(row=0, column=0, padx=10, pady=15, sticky="")
+
+
+        self.discord_button = customtkinter.CTkButton(self.navigation_bot_frame, corner_radius=5, height=40, border_spacing=10, text="", fg_color="transparent", 
                                                       image=self.discord_image, width=20, command= lambda: self.open_link("https://discord.gg/x5bkv2eXam"))
-        self.discord_button.grid(row=6, column=0, padx=10, pady=20, sticky="s")        
+        self.discord_button.grid(row=0, column=1, padx=10, pady=15, sticky="")        
 
 
         # self.discord_profil = customtkinter.CTkLabel(self.navigation_frame, image=self.avatar_image, text=user_name, compound="left", font=my_font_h4, text_color=("gray10", "gray90"))
@@ -265,7 +282,7 @@ class App(customtkinter.CTk):
 
         self.mw3_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color=self.color_bg)
         self.mw3_frame.grid_columnconfigure(0, weight=0)
-        self.mw3_frame.grid(pady=7)
+        self.mw3_frame.grid(pady=5)
 
 
         # ____ mw3 top frame ____
@@ -288,7 +305,7 @@ class App(customtkinter.CTk):
         self.mw3_frame_mid_unlockall_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame, text="Unlock All", font=my_font_h4)
         self.mw3_frame_mid_unlockall_label.grid(row=1, column=0, pady=10, padx=30, sticky="w")
 
-        self.mw3_frame_mid_unlockall_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
+        self.mw3_frame_mid_unlockall_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='red', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
         self.mw3_frame_mid_unlockall_button.grid(row=1, column=2, pady=10, sticky="w")
 
 
@@ -347,11 +364,34 @@ class App(customtkinter.CTk):
         self.changelog_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
 
 
+        # ________ PROFIL ________
 
+        self.profil_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
+        
+        self.profil_frame_time_label = customtkinter.CTkLabel(self.profil_frame, text='test', width=40, height=28, fg_color='transparent')
+        self.profil_frame_time_label.place(x=10, y=10)
+        self.profil_frame_version_label = customtkinter.CTkLabel(self.profil_frame, text='test', width=40, height=28, fg_color='transparent')
+        self.profil_frame_version_label.place(x=10, y=30)
+
+ 
+    
         # select default frame
         self.select_frame_by_name("mw3")
+        self.user_info()
 
 
+
+
+
+
+    def user_info(self):
+        self.current_time, script_path = get_info()
+        self.current_version = get_version()
+        self.profil_frame_time_label.configure(text="current time = " + self.current_time)
+        self.profil_frame_version_label.configure(text="current version = " + self.current_version)
+
+        self.after(1000, self.user_info)
+ 
 
 
 
@@ -398,7 +438,13 @@ class App(customtkinter.CTk):
             self.changelog_frame.grid_forget()
 
 
+        if name == "profil":
+            self.profil_button.configure(fg_color=self.color_hover,  hover_color=(self.color_hover))
+            self.profil_frame.grid(row=0, column=1, sticky="nsew")
 
+        else:
+            self.profil_button.configure(fg_color="transparent")
+            self.profil_frame.grid_forget()
 
 
 
@@ -423,6 +469,8 @@ class App(customtkinter.CTk):
         self.select_frame_by_name("changelog")
 
 
+    def profil_button_event(self):
+        self.select_frame_by_name("profil")
 
 
 
@@ -437,6 +485,8 @@ class App(customtkinter.CTk):
     
     def open_link(self, url):
         webbrowser.open(url)
+
+
 
 
 if __name__ == "__main__":
