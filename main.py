@@ -17,9 +17,7 @@ import webbrowser
 
 
 #src import
-from src.get_user_info import get_info
-from src.get_user_version import get_version
-
+from src.get_user_info import getinfo
 
 
 
@@ -88,7 +86,6 @@ class App(customtkinter.CTk):
         self.title("")
         self.geometry("600x550")
         self.resizable("False", "False")
-
 
 
         # drag window
@@ -281,64 +278,80 @@ class App(customtkinter.CTk):
         # ________ MW3 ________
 
         self.mw3_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color=self.color_bg)
-        self.mw3_frame.grid_columnconfigure(0, weight=0)
         self.mw3_frame.grid(pady=5)
 
 
         # ____ mw3 top frame ____
         
         self.mw3_frame_top_frame = customtkinter.CTkFrame(self.mw3_frame, corner_radius=0, fg_color=self.color_bg, border_color=self.color_contour, border_width=.7)
-        self.mw3_frame_top_frame.grid_columnconfigure(0, weight=1)
         self.mw3_frame_top_frame.grid(row=0, column=0, sticky="nwe")
 
         self.mw3_frame_top_banner = customtkinter.CTkButton(self.mw3_frame_top_frame, image=self.mw3_image_banner, text="", fg_color="transparent", hover='false', width=370)
         self.mw3_frame_top_banner.grid(row=0, column=0, padx=20, pady=20, sticky="w")
         
+        self.progressbar = customtkinter.CTkProgressBar(self.mw3_frame_top_frame, orientation='horizontal', mode="determinate", determinate_speed=.4)
+        self.progressbar.place(relx=.5, rely=0.9, anchor="s")
+        self.progressbar.set(0)
         
-        # ____ mw3 mid frame ____
+        
 
-        self.mw3_frame_mid_frame = customtkinter.CTkFrame(self.mw3_frame, corner_radius=0, fg_color=self.color_bg, border_color=self.color_contour, border_width=.7)
-        self.mw3_frame_mid_frame.grid_columnconfigure(2, weight=1)
-        self.mw3_frame_mid_frame.grid(row=1, column=0, sticky="new", pady=5)
+        
+        # ____ mw3 mid frame 0____
 
-
-        self.mw3_frame_mid_unlockall_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame, text="Unlock All", font=my_font_h4)
-        self.mw3_frame_mid_unlockall_label.grid(row=1, column=0, pady=10, padx=30, sticky="w")
-
-        self.mw3_frame_mid_unlockall_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='red', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
-        self.mw3_frame_mid_unlockall_button.grid(row=1, column=2, pady=10, sticky="w")
+        self.mw3_frame_mid_frame0 = customtkinter.CTkFrame(self.mw3_frame, corner_radius=0, fg_color=self.color_bg, border_color=self.color_contour, border_width=.7)     
+        self.mw3_frame_mid_frame0.grid(row=1, column=0, sticky="new", pady=5)
 
 
-        self.mw3_frame_mid_legitcheat_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame, text="Legit Cheat", font=my_font_h4)
-        self.mw3_frame_mid_legitcheat_label.grid(row=2, column=0, padx=30, pady=10, sticky="w")
+        self.mw3_frame_mid_unlockall_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame0, text="Unlock All", font=my_font_h4)
+        self.mw3_frame_mid_unlockall_label.grid(row=0, column=0, padx=30, pady=10, sticky="w")
 
-        self.mw3_frame_mid_legitcheat_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
-        self.mw3_frame_mid_legitcheat_button.grid(row=2, column=2, pady=10, sticky="w")
-
-
-        self.mw3_frame_mid_ragecheat_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame, text="Rage Cheat", font=my_font_h4)
-        self.mw3_frame_mid_ragecheat_label.grid(row=3, column=0, padx=30, pady=10, sticky="w")
-
-        self.mw3_frame_mid_ragecheat_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
-        self.mw3_frame_mid_ragecheat_button.grid(row=3, column=2, pady=10, sticky="w")
+        self.mw3_frame_mid_unlockall_button = customtkinter.CTkButton(self.mw3_frame_mid_frame0, fg_color='red', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60, command=self.mw3_frame_mid_unlockall_button_event)
+        self.mw3_frame_mid_unlockall_button.place(relx=.85,  rely =.5, anchor="center")
 
 
-        self.mw3_frame_mid_ddos_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame, text="DDos Tool", font=my_font_h4)
-        self.mw3_frame_mid_ddos_label.grid(row=4, column=0, padx=30, pady=10, sticky="w")
 
-        self.mw3_frame_mid_ddos_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
-        self.mw3_frame_mid_ddos_button.grid(row=4, column=2, pady=10, sticky="w")
+        # ____ mw3 mid frame 1____
 
-
-        self.mw3_frame_mid_othertool_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame, text="Other Tools", font=my_font_h4)
-        self.mw3_frame_mid_othertool_label.grid(row=5, column=0, padx=30, pady=10, sticky="w")
-
-        self.mw3_frame_mid_othertool_button = customtkinter.CTkButton(self.mw3_frame_mid_frame, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
-        self.mw3_frame_mid_othertool_button.grid(row=5, column=2, pady=10, sticky="w")
+        self.mw3_frame_mid_frame1 = customtkinter.CTkFrame(self.mw3_frame, corner_radius=0, fg_color=self.color_bg, border_color=self.color_contour, border_width=.7)   
+        self.mw3_frame_mid_frame1.grid(row=2, column=0, sticky="new")
 
 
-        self.mw3_frame_mid_invisible2 = customtkinter.CTkLabel(self.mw3_frame_mid_frame, fg_color='transparent', text="", font=my_font_h4, width=60)
-        self.mw3_frame_mid_invisible2.grid(row=6, column=1, padx=60, pady=1, sticky="w")
+        self.mw3_frame_mid_legitcheat_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame1, text="Legit Cheat", font=my_font_h4)
+        self.mw3_frame_mid_legitcheat_label.grid(row=0, column=0, padx=30, pady=10, sticky="w")
+
+        self.mw3_frame_mid_legitcheat_button = customtkinter.CTkButton(self.mw3_frame_mid_frame1, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60, command=self.mw3_frame_mid_legitcheat_button_event)
+        self.mw3_frame_mid_legitcheat_button.place(relx=.85,  rely =.25, anchor="center")
+
+
+        self.mw3_frame_mid_ragecheat_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame1, text="Rage Cheat", font=my_font_h4)
+        self.mw3_frame_mid_ragecheat_label.grid(row=1, column=0, padx=30, pady=10, sticky="w")
+
+        self.mw3_frame_mid_ragecheat_button = customtkinter.CTkButton(self.mw3_frame_mid_frame1, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60, command=self.mw3_frame_mid_ragecheat_button_event)
+        self.mw3_frame_mid_ragecheat_button.place(relx=.85,  rely =.75, anchor="center")
+
+
+
+        # ____ mw3 mid frame 2____
+
+        self.mw3_frame_mid_frame2 = customtkinter.CTkFrame(self.mw3_frame, corner_radius=0, fg_color=self.color_bg, border_color=self.color_contour, border_width=.7)
+        self.mw3_frame_mid_frame2.grid_columnconfigure(1, minsize=180)
+        self.mw3_frame_mid_frame2.grid(row=3, column=0, sticky="new", pady=5)
+
+
+        self.mw3_frame_mid_ddos_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame2, text="DDos Tool", font=my_font_h4)
+        self.mw3_frame_mid_ddos_label.grid(row=0, column=0, padx=30, pady=10, sticky="w")
+
+        self.mw3_frame_mid_ddos_button = customtkinter.CTkButton(self.mw3_frame_mid_frame2, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
+        self.mw3_frame_mid_ddos_button.place(relx=.85,  rely =.25, anchor="center")
+
+
+        self.mw3_frame_mid_othertool_label = customtkinter.CTkLabel(self.mw3_frame_mid_frame2, text="Other Tools", font=my_font_h4)
+        self.mw3_frame_mid_othertool_label.grid(row=1, column=0, padx=30, pady=10, sticky="w")
+
+        self.mw3_frame_mid_othertool_button = customtkinter.CTkButton(self.mw3_frame_mid_frame2, fg_color='transparent', border_color=self.color_button, border_width=1, corner_radius=10, text="", compound="left", font=my_font_h4, image=self.play_image, hover_color=self.color_hover, width=60)
+        self.mw3_frame_mid_othertool_button.place(relx=.85,  rely =.75, anchor="center")
+
+
 
 
 
@@ -366,15 +379,27 @@ class App(customtkinter.CTk):
 
         # ________ PROFIL ________
 
-        self.profil_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
-        
+        self.profil_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color=self.color_bg)
+        self.mw3_frame.grid_columnconfigure(0, weight=0)
+        self.mw3_frame.grid(pady=5)
+
         self.profil_frame_time_label = customtkinter.CTkLabel(self.profil_frame, text='test', width=40, height=28, fg_color='transparent')
         self.profil_frame_time_label.place(x=10, y=10)
         self.profil_frame_version_label = customtkinter.CTkLabel(self.profil_frame, text='test', width=40, height=28, fg_color='transparent')
         self.profil_frame_version_label.place(x=10, y=30)
 
+        self.profil_frame_userinfo_label = customtkinter.CTkLabel(self.profil_frame, text='test', width=40, height=28, fg_color='transparent')
+        self.profil_frame_userinfo_label.place(x=10, y=50)
  
-    
+        self.profil_frame_pcinfo_label = customtkinter.CTkLabel(self.profil_frame, text='test', width=40, height=28, fg_color='transparent')
+        self.profil_frame_pcinfo_label.place(x=10, y=70)
+ 
+        self.profil_frame_cpuinfo_label = customtkinter.CTkLabel(self.profil_frame, text='test', width=40, height=28, fg_color='transparent')
+        self.profil_frame_cpuinfo_label.place(x=10, y=90)
+
+        self.profil_frame_gpuinfo_label = customtkinter.CTkLabel(self.profil_frame, text='test', width=40, height=28, fg_color='transparent')
+        self.profil_frame_gpuinfo_label.place(x=10, y=110)
+
         # select default frame
         self.select_frame_by_name("mw3")
         self.user_info()
@@ -385,12 +410,15 @@ class App(customtkinter.CTk):
 
 
     def user_info(self):
-        self.current_time, script_path = get_info()
-        self.current_version = get_version()
+        self.user_name, self.user_login, self.user_ip, self.user_HOSTNAME, self.user_operating_system, self.user_cpu, self.user_gpu, self.current_location, self.current_time, self.current_version = getinfo()
         self.profil_frame_time_label.configure(text="current time = " + self.current_time)
         self.profil_frame_version_label.configure(text="current version = " + self.current_version)
+        self.profil_frame_userinfo_label.configure(text='User name:' + self.user_name + '   login:' + self.user_login + '   HOSTNAME:' + self.user_HOSTNAME)
+        self.profil_frame_pcinfo_label.configure(text='ip :' + self.user_ip + ' OS:' + self.user_operating_system)
+        self.profil_frame_cpuinfo_label.configure(text='CPU:' + self.user_cpu)
+        self.profil_frame_gpuinfo_label.configure(text='GPU:' + self.user_gpu)
 
-        self.after(1000, self.user_info)
+        self.after(10000, self.user_info)
  
 
 
@@ -488,7 +516,22 @@ class App(customtkinter.CTk):
 
 
 
+    # ___________ CHEAT BUTTONS EVENT ___________
 
+    def mw3_frame_mid_unlockall_button_event(self):
+        self.progressbar.step()
+        if self.progressbar.get() > 0.99:
+            self.progressbar.set(0)
+        else:
+            self.after(30, self.mw3_frame_mid_unlockall_button_event)
+
+
+    def mw3_frame_mid_ragecheat_button_event(self):
+        self.progressbar.start()
+    def mw3_frame_mid_legitcheat_button_event(self):
+        self.progressbar.start()
+    def mw3_frame_mid_legitcheat_button_event(self):
+        self.progressbar.start()
 if __name__ == "__main__":
     app = App()
     app.mainloop()
